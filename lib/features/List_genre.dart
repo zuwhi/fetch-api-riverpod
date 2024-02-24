@@ -28,7 +28,7 @@ class ListGenre extends ConsumerWidget {
               color: genreeSelected == e ? Colors.white : Colors.black,
             ),
           ),
-          backgroundColor: genreeSelected == e ? Colors.blue : Colors.white,
+          backgroundColor: genreeSelected == e ? Colors.purple : Colors.white,
         ),
       );
     }).toList());
