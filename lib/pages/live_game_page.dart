@@ -1,6 +1,7 @@
 // ignore_for_file: camel_case_types, prefer_typing_uninitialized_variables
 
 import 'package:extended_image/extended_image.dart';
+import 'package:fetch_api/features/List_genre.dart';
 import 'package:fetch_api/models/game.dart';
 import 'package:fetch_api/providers/genre_provider.dart';
 import 'package:fetch_api/providers/live_game_provider.dart';
@@ -40,27 +41,7 @@ class _LiveGameState extends ConsumerState<LiveGame> {
 
                 return SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
-                  child: Row(
-                      children: genre.map((e) {
-                    return Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: ActionChip(
-                        onPressed: () {
-                          ref.read(genreNotifierProvider.notifier).change(e);
-                        },
-                        label: Text(
-                          e,
-                          style: TextStyle(
-                            color: genreeSelected == e
-                                ? Colors.white
-                                : Colors.black,
-                          ),
-                        ),
-                        backgroundColor:
-                            genreeSelected == e ? Colors.blue : Colors.white,
-                      ),
-                    );
-                  }).toList()),
+                  child: ListGenre(genre: genre, genreeSelected: genreeSelected),
                 );
               },
             ),
@@ -106,9 +87,6 @@ class _LiveGameState extends ConsumerState<LiveGame> {
                                   onPressed: () {
                                     Game newGame =
                                         game.copyWith(isSaved: !game.isSaved);
-                                    // String? title = game.title;
-                                    // print(title);
-
                                     wiRef
                                         .read(liveGameNotifierProvider.notifier)
                                         .ChangeIsSaved(newGame);
@@ -133,3 +111,4 @@ class _LiveGameState extends ConsumerState<LiveGame> {
         ));
   }
 }
+
